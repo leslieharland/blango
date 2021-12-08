@@ -3,6 +3,7 @@ from django.conf import settings
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes.fields import GenericRelation
+from django.utils import timezone
 
 # Create your models here.
 class Tag(models.Model):
@@ -30,7 +31,7 @@ class Post(models.Model):
     slug = models.SlugField()
     summary = models.TextField(max_length=500)
     content = models.TextField()
-    tags = models.ManyToManyField(Tag, related_name="posts")
+    tags = models.ManyToManyField(Tag, related_name="posts", blank=True)
     comments = GenericRelation(Comment)
 
     def __str__(self):
