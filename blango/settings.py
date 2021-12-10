@@ -31,7 +31,7 @@ class Dev(Configuration):
   SECRET_KEY = 'django-insecure-+sn%dpa!086+g+%44z9*^j^q-u4n!j(#wl)x9a%_1op@zz2+1-'
 
   # SECURITY WARNING: don't run with debug turned on in production!
-  DEBUG = values.BooleanValue(False)
+  DEBUG = values.BooleanValue(True)
 
   ALLOWED_HOSTS = values.ListValue(["localhost", "0.0.0.0", ".codio.io"])
   X_FRAME_OPTIONS = 'ALLOW-FROM ' + os.environ.get('CODIO_HOSTNAME') + '-8000.codio.io'
@@ -54,13 +54,15 @@ class Dev(Configuration):
       'django.contrib.messages',
       'django.contrib.staticfiles',
       "blog",
-      'crispy_forms', 'crispy_bootstrap5'
+      'crispy_forms', 'crispy_bootstrap5',
+      "debug_toolbar",
   ]
 
   MIDDLEWARE = [
       'django.middleware.security.SecurityMiddleware',
       'django.contrib.sessions.middleware.SessionMiddleware',
       'django.middleware.common.CommonMiddleware',
+      "debug_toolbar.middleware.DebugToolbarMiddleware",
       # comment on codio
   #     'django.middleware.csrf.CsrfViewMiddleware',
       'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -68,6 +70,8 @@ class Dev(Configuration):
           # comment on codio
   #     'django.middleware.clickjacking.XFrameOptionsMiddleware',
   ]
+  
+  INTERNAL_IPS = ["192.168.10.93"]
 
   ROOT_URLCONF = 'blango.urls'
 
