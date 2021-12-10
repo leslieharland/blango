@@ -177,8 +177,6 @@ class Dev(Configuration):
 
 
   CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
-
-  CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
   
 class Prod(Dev):
   DEBUG = values.BooleanValue(False)
